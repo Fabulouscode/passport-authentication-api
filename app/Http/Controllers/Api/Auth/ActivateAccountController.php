@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ActivateAccountRequest;
 use App\Http\Resources\SignupResource;
 use App\Models\User;
+use App\Notifications\WelcomeMsg;
 use App\Services\OTPService;
 use Illuminate\Http\Request;
 
@@ -60,6 +61,9 @@ class ActivateAccountController extends Controller
                 'message' => 'Unable to activate account. Try again!',
             ])->setStatusCode(500);
         }
+
+         // send notification to user's email
+         $user->notify(new WelcomeMsg($user, $otp));
 
         // success message response
         return response([

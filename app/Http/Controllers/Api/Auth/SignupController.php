@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\SignupRequest;
 use App\Http\Resources\SignupResource;
 use App\Models\User;
+use App\Notifications\SendSignupNotification;
 use App\Services\OTPService;
 use Illuminate\Support\Facades\Hash;
 
@@ -35,6 +36,8 @@ class SignupController extends Controller
          // Create an OTP
          $otp = $this->otpService->requestOTP($user->email);
 
+        // Send OTP via email
+        $user->notify(new SendSignupNotification($user, $otp));
 
         return response([
             'status' => 'success',

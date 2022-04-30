@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ResendOTPRequest;
 use App\Models\User;
+use App\Notifications\ResendOTP;
 use App\Services\OTPService;
 use Illuminate\Http\Request;
 
@@ -30,6 +31,9 @@ class ResendOPTController extends Controller
         }
 
         $otp = $this->otpService->resendOTP($request->otpRequestId);
+
+         // Resend OTP via email
+         $user->notify(new ResendOTP($user, $otp));
 
         return response([
             'status' => 'success',
