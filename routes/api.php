@@ -19,15 +19,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 Route::prefix('v1')->group(static function(){
     Route::prefix('users')->name('user.')->group(static function(){
         Route::post('/signUp', [SignupController::class, 'signup'])->name('signup');
         Route::post('/login', [LoginController::class, 'login'])->name('login');
         Route::patch('/accountActivation', [ActivateAccountController::class, 'accountActivation'])->name('accountActivation');
         Route::patch('/resendOTP', [ResendOPTController::class, 'resendOTP'])->name('resendOTP');
-        Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
     });
+    Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 });
