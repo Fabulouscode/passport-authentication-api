@@ -1,8 +1,8 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://previews.123rf.com/images/yupiramos/yupiramos1509/yupiramos150904651/44820326-pet-shop-dise%C3%B1o-ilustraci%C3%B3n-vectorial-eps-10-.jpg" width="400"></a></p>
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 ## Overview 
 
-This project is written with PHP Laravel Framework. The framework is made for writting super API endpoints. It implements JSON Web Token for user  Authentication. Please take a look at  [JWT](https://jwt.io/). 
+This project is written with PHP Laravel Framework. The framework is made for writting super API endpoints. It implements passport Authentication
 ## Installation & Usage
 <hr/>
 
