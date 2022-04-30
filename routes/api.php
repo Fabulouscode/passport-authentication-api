@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\Auth\ActivateAccountController;
 use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\Auth\LogoutController;
+use App\Http\Controllers\Api\Auth\ResendOPTController;
 use App\Http\Controllers\Api\Auth\SignupController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -26,6 +27,7 @@ Route::prefix('v1')->group(static function(){
         Route::post('/signUp', [SignupController::class, 'signup'])->name('signup');
         Route::post('/login', [LoginController::class, 'login'])->name('login');
         Route::patch('/accountActivation', [ActivateAccountController::class, 'accountActivation'])->name('accountActivation');
+        Route::patch('/resendOTP', [ResendOPTController::class, 'resendOTP'])->name('resendOTP');
         Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
     });
 });
