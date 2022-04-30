@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Api\Auth\LoginController;
+use App\Http\Controllers\Api\Auth\LogoutController;
 use App\Http\Controllers\Api\Auth\SignupController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -21,5 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::prefix('v1')->group(static function(){
     Route::prefix('users')->name('user.')->group(static function(){
         Route::post('/signUp', [SignupController::class, 'signup'])->name('signup');
+        Route::post('/login', [LoginController::class, 'login'])->name('login');
+        Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
     });
 });
