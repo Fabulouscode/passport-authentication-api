@@ -6,10 +6,15 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\SignupRequest;
 use App\Http\Resources\SignupResource;
 use App\Models\User;
+use App\Services\OTPService;
 use Illuminate\Support\Facades\Hash;
 
 class SignupController extends Controller
 {
+    public function __construct(OTPService $otpService)
+    {
+        $this->otpService = $otpService;
+    }
     public function signup(SignupRequest $request)
     {
         $user = User::create([
@@ -26,6 +31,10 @@ class SignupController extends Controller
                 'message' => 'Unable to create account.Try again!'
             ])->setStatusCode(400);
         }
+
+         // Create an OTP
+         $otp = $this->otpService->requestOTP($user->email);
+
 
         return response([
             'status' => 'success',
